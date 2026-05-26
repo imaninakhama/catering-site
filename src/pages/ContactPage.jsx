@@ -26,11 +26,21 @@ function ContactPage() {
   return (
     <div className="pt-16 min-h-screen">
       <div className="px-12 py-20 relative overflow-hidden" style={{ background: DARK }}>
-        <div className="absolute inset-0 opacity-10" style={`{ backgroundImage: radial-gradient(circle, ${GOLD} 1px, transparent 1px), backgroundSize: "36px 36px" }`} />
+        <div 
+          className="absolute inset-0 opacity-10" 
+          style={{ 
+            backgroundImage: `radial-gradient(circle, ${GOLD} 1px, transparent 1px)`, 
+            backgroundSize: "36px 36px" 
+          }} 
+        />
         <div className="relative max-w-175">
-          <span className="font-mono text-[10px] tracking-[0.45em] block mb-3" style={{ color: rgba(201,168,76,0.7) }}>✦ REACH OUT</span>
-          <h1 className="text-[clamp(36px,6vw,72px)] font-bold uppercase tracking-widest leading-none mb-4" style={{ color: CREAM }}>Contact Us</h1>
-          <p className="text-[17px] leading-[1.75] max-w-130" style={{ color: rgba(245,237,224,0.5) }}>
+          <span className="font-mono text-[10px] tracking-[0.45em] block mb-3" style={{ color: "rgba(201,168,76,0.7)" }}>
+            ✦ REACH OUT
+          </span>
+          <h1 className="text-[clamp(36px,6vw,72px)] font-bold uppercase tracking-widest leading-none mb-4" style={{ color: CREAM }}>
+            Contact Us
+          </h1>
+          <p className="text-[17px] leading-[1.75] max-w-130" style={{ color: "rgba(245,237,224,0.5)" }}>
             Tell us about your event and we'll craft the perfect catering experience for you.
           </p>
         </div>
@@ -59,7 +69,7 @@ function ContactPage() {
           </div>
           <div className="mb-6">
             <label className={lCls} style={lSty}>Additional Details</label>
-            <textarea className={iCls} style={{ ...iSty, height: 120, resize: "vertical" }} placeholder="Dietary requirements, venue, package preference, special requests…" value={form.message} onChange={set("message")} />
+            <textarea className={iCls} style={{ ...iSty, height: "120px", resize: "vertical" }} placeholder="Dietary requirements, venue, package preference, special requests…" value={form.message} onChange={set("message")} />
           </div>
           <button
             className="w-full font-mono text-[11px] tracking-[0.3em] border-0 py-5 rounded cursor-pointer hover:opacity-85 transition-opacity font-bold"
@@ -70,7 +80,12 @@ function ContactPage() {
 
         {/* Sidebar info */}
         <div className="pt-2">
-          {[["📞","Phone","+254 722 116 085\n+254 739 968 828"],["✉️","Email","tastyspicescatering@gmail.com"],["🌍","Service Area","Nairobi & Surrounding Regions"],["🕐","Response Time","Within 48 business hours"]].map(([icon, label, val]) => (
+          {[
+            ["📞","Phone","+254 722 116 085\n+254 739 968 828"],
+            ["✉️","Email","tastyspicescatering@gmail.com"],
+            ["🌍","Service Area","Nairobi & Surrounding Regions"],
+            ["🕐","Response Time","Within 48 business hours"]
+          ].map(([icon, label, val]) => (
             <div key={label} className="flex items-start py-5" style={{ borderBottom: "1px solid rgba(42,26,10,0.08)" }}>
               <span className="text-xl mr-4 mt-0.5">{icon}</span>
               <div>
@@ -81,10 +96,9 @@ function ContactPage() {
           ))}
 
           <div className="mt-8 p-6 rounded-xl" style={{ background: DARK }}>
-            <div className="font-mono text-[9px] tracking-[0.4em] mb-3" style={{ color: rgba(201,168,76,0.65) }}>NOTE ON PACKAGES</div>
-            <p className="text-[12px] leading-relaxed" style={{ color: rgba(245,237,224,0.5) }}>
+            <div className="font-mono text-[9px] tracking-[0.4em] mb-3" style={{ color: "rgba(201,168,76,0.65)" }}>NOTE ON PACKAGES</div>
+            <p className="text-[12px] leading-relaxed" style={{ color: "rgba(245,237,224,0.5)" }}>
               Free Kids Menu (50 Pax) for guests above 300 Pax — inclusive of table set up. Prices vary by guest count and package tier.
-            
             </p>
           </div>
         </div>

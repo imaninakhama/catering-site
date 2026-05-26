@@ -71,12 +71,12 @@ export const NAV_ITEMS = [
 ];
 
 export const GALLERY_ITEMS = [
-  { label: "TS&CS Director at a past Corporate Event",     emoji: "👨‍🍳" },
-  { label: "Serving Guests at a past Private Event",       emoji: "🍽️" },
-  { label: "Buffet Set Up (Wedding)",                      emoji: "💍" },
-  { label: "Breakfast Set Up (Corporate Seminar)",         emoji: "☀️" },
-  { label: "Delicious & Tasty Grilled Beef ready to serve",emoji: "🔥" },
-  { label: "Live Spice Station at a Gala Dinner",          emoji: "🌶️" },
+  { label: "TS&CS Director at a past Corporate Event",     image:"corporateDirector.jpeg"},
+  { label: "Serving Guests at a past Private Event",       image:"servingGuests.jpeg" },
+  { label: "Buffet Set Up (Wedding)",                      image: "weddingBuffet.jpeg" },
+  { label: "Breakfast Set Up (Corporate Seminar)",         image: "Breakfast.jpeg" },
+  { label: "Delicious & Tasty Grilled Beef ready to serve",image: "grilledBeef.jpeg" },
+  { label: "Live Spice Station at a Gala Dinner",          image: "spiceStation.jpeg" },
 ];
 
 export const GOLD  = "#C9A84C";

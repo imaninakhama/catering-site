@@ -55,15 +55,16 @@ export const SNACK_ITEMS = [
 export const SNACK_ALSO = ["Scones","Croissant","Danish Pastry","Sausage Rolls"];
 
 export const VALUES = [
-  { icon: "⭐", title: "Exemplary Customer Service", desc: "We go above and beyond for every client, every time." },
-  { icon: "🚀", title: "Excellent Service Delivery", desc: "On time, every time — from setup to the final plate." },
-  { icon: "🍽️", title: "Vast F&B Knowledge", desc: "Years of culinary expertise across corporate and personal events." },
-  { icon: "🤝", title: "Positively Motivated Teams", desc: "Our staff bring energy and professionalism to every occasion." },
-  { icon: "🛡️", title: "Professionalism & Trust", desc: "Discreet, reliable, and consistent — a partner you can count on." },
+  { title: "Exemplary Customer Service", desc: "Every client gets our full attention, from a small board lunch to a full wedding reception." },
+  { title: "Excellent Service Delivery", desc: "On time at every event, from setup to the final plate." },
+  { title: "Vast F&B Knowledge", desc: "Years of culinary experience across corporate and personal events." },
+  { title: "Positively Motivated Teams", desc: "Our staff bring energy and professionalism to every occasion." },
+  { title: "Professionalism & Trust", desc: "Discreet, reliable and consistent, so you can stay with your guests instead of the kitchen." },
 ];
 
 export const NAV_ITEMS = [
   { label: "About",    path: "/about"    },
+  { label: "Menu",     path: "/menu"     },
   { label: "Packages", path: "/packages" },
   { label: "Snack Bistro", path: "/bistro" },
   { label: "Gallery",  path: "/gallery"  },

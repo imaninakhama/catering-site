@@ -9,7 +9,7 @@ import PackagesPage from './pages/PackagingPage';
 import BistroPage from './pages/SnackBistro';    // fixed spelling
 import GalleryPage from './pages/Gallery';
 import ContactPage from './pages/ContactPage';
-import { PARCH } from './data/constants';  // fixed import
+import MenuPage from './pages/MenuPage';
 
 const pageAnimationStyles = `
 .page-enter {
@@ -53,6 +53,7 @@ export default function App() {
 
   const pages = {
     "/about": <AboutPage />,
+    "/menu": <MenuPage goTo={goTo} />,
     "/packages": <PackagesPage />,
     "/bistro": <BistroPage goTo={goTo} />,
     "/gallery": <GalleryPage />,
@@ -60,7 +61,7 @@ export default function App() {
   };
 
   return (
-    <div className="min-h-screen font-serif" style={{ background: PARCH, color: "#2A1A0A" }}>
+    <div className="min-h-screen font-sans bg-parch text-ink">
       <style>{pageAnimationStyles}</style>
       <Nav current={route} goTo={goTo} />
       <div key={pageKey} className="page-enter">

@@ -1,133 +1,117 @@
-import { DARK, CREAM, GOLD, PARCH } from '../data/constants';
 import { PACKAGES } from '../data/constants';
 import { useState } from 'react';
+import PageHero from '../components/PageHero';
+import weddingBuffet from '../assets/weddingBuffet.jpeg';
 
 function PackagesPage() {
   const [open, setOpen] = useState(null);
 
   return (
-    <div className="pt-16 min-h-screen">
-      {/* Hero Section - Responsive padding */}
-      <div className="px-4 md:px-12 py-10 md:py-20 relative overflow-hidden" style={{ background: DARK }}>
-        <div 
-          className="absolute inset-0 opacity-10" 
-          style={{ 
-            backgroundImage: `radial-gradient(circle, ${GOLD} 1px, transparent 1px)`, 
-            backgroundSize: "36px 36px" 
-          }} 
-        />
-        <div className="relative max-w-175 text-center md:text-left mx-auto md:mx-0">
-          <span className="font-mono text-[10px] tracking-[0.45em] block mb-3" style={{ color: "rgba(201,168,76,0.7)" }}>
-            ✦ CATERING PACKAGES
-          </span>
-          <h1 className="text-[clamp(36px,6vw,72px)] font-bold uppercase tracking-widest leading-none mb-4" style={{ color: CREAM }}>
-            Our Packages
-          </h1>
-          <p className="text-[15px] md:text-[17px] leading-[1.75] max-w-120 mx-auto md:mx-0" style={{ color: "rgba(245,237,224,0.5)" }}>
-            From budget-friendly to ultra-premium — every package includes Kids Menu (50 Pax) and full table setup for guests above 300.
-          </p>
+    <div className="min-h-screen">
+      <PageHero
+        eyebrow="Catering Packages"
+        title="Our Packages"
+        image={weddingBuffet}
+        imageAlt="Guests at a wedding serving themselves from the buffet"
+      >
+        From budget friendly to ultra premium. Every package includes a Kids Menu (50 Pax) and full table setup for guests above 300.
+      </PageHero>
+
+      <section className="px-4 sm:px-8 md:px-12 py-12 md:py-20">
+        <div className="flex flex-col md:flex-row md:items-center md:justify-between gap-3 mb-8 md:mb-12 pb-6 border-b border-ink/10">
+          <h2 className="font-display font-extrabold text-[clamp(28px,4vw,44px)] leading-none tracking-tight">Choose a menu</h2>
+          <p className="text-[15px] text-ink/60">Contact us for pricing, customised to your guest count and requirements.</p>
         </div>
-      </div>
 
-      {/* Main Content - Responsive padding */}
-      <div className="px-4 md:px-12 py-8 md:py-12">
-        <p 
-          className="text-[12px] md:text-[13px] font-mono tracking-widest text-center mb-6 md:mb-10 pb-4 md:pb-6" 
-          style={{ color: "rgba(42,26,10,0.4)", borderBottom: "1px solid rgba(42,26,10,0.08)" }}
-        >
-          ✦ Contact us for pricing — customised to your guest count and requirements ✦
-        </p>
-
-        {/* Packages Grid - Responsive columns */}
-        <div className="grid grid-cols-1 md:grid-cols-2 gap-3 md:gap-4">
+        <div className="grid grid-cols-1 md:grid-cols-2 gap-4 md:gap-5 items-start">
           {PACKAGES.map((pkg, i) => (
-            <div key={i} className="rounded-xl overflow-hidden" style={{ border: "1px solid rgba(42,26,10,0.1)" }}>
+            <div key={pkg.name} className="rounded-2xl overflow-hidden bg-cream shadow-[0_1px_0_rgba(42,26,10,0.08)] border border-ink/10">
               {/* Header */}
-              <div 
-                className="px-4 md:px-8 py-4 md:py-6 flex items-center justify-between cursor-pointer" 
-                style={{ background: pkg.color }} 
+              <button
+                className="w-full text-left px-5 md:px-8 py-6 md:py-8 flex items-center justify-between gap-4 cursor-pointer"
+                style={{ background: pkg.color }}
                 onClick={() => setOpen(open === i ? null : i)}
+                aria-expanded={open === i}
               >
                 <div>
-                  <div className="font-mono text-[8px] md:text-[9px] tracking-[0.4em] mb-1" style={{ color: "rgba(255,255,255,0.55)" }}>
-                    {pkg.tag}
-                  </div>
-                  <h3 className="text-base md:text-xl font-semibold italic" style={{ color: CREAM, fontFamily: "Georgia, serif" }}>
+                  <div className="eyebrow text-[10px]! text-white/70 mb-2">{pkg.tag}</div>
+                  <h3 className="font-display text-[28px] md:text-[34px] font-bold leading-none text-cream">
                     {pkg.name}
                   </h3>
+                  <div className="text-[13px] text-white/65 mt-2">{pkg.mains.length} main course dishes</div>
                 </div>
-                <span 
-                  className="text-lg md:text-xl" 
-                  style={{ 
-                    color: "rgba(255,255,255,0.6)", 
-                    transform: open === i ? "rotate(180deg)" : "rotate(0)", 
-                    transition: "transform 0.3s" 
-                  }}
+                <span
+                  className="shrink-0 w-10 h-10 rounded-full border border-white/30 flex items-center justify-center text-cream transition-transform duration-300"
+                  style={{ transform: open === i ? "rotate(180deg)" : "none" }}
+                  aria-hidden="true"
                 >
-                  ▾
+                  <svg width="14" height="14" viewBox="0 0 14 14" fill="none"><path d="M2 5l5 5 5-5" stroke="currentColor" strokeWidth="1.8" strokeLinecap="round" strokeLinejoin="round" /></svg>
                 </span>
-              </div>
+              </button>
 
               {/* Body - Expanded content */}
               {open === i && (
-                <div className="px-4 md:px-8 py-4 md:py-6 page-enter" style={{ background: PARCH }}>
-                  <div className="grid grid-cols-1 md:grid-cols-2 gap-4 md:gap-x-8 md:gap-y-5">
+                <div className="px-5 md:px-8 py-6 md:py-8 page-enter">
+                  <div className="grid grid-cols-1 sm:grid-cols-2 gap-6 md:gap-x-10 md:gap-y-7">
                     {pkg.starters?.length > 0 && (
-                      <MenuSection title="Starters / Reception" items={pkg.starters} />
+                      <MenuSection title="Starters / Reception" items={pkg.starters} color={pkg.color} />
                     )}
-                    <MenuSection title="Main Course" items={pkg.mains} />
-                    <MenuSection title="Salads" items={pkg.salads} />
-                    <MenuSection title="Drinks" items={pkg.drinks} />
-                    <MenuSection title="Dessert" items={pkg.dessert} />
-                    {pkg.extras && <MenuSection title="Bridal Party Extras" items={pkg.extras} />}
-                    {pkg.photoshoot && <MenuSection title="Photo Shoot (30 Pax)" items={pkg.photoshoot} />}
+                    <MenuSection title="Main Course" items={pkg.mains} color={pkg.color} />
+                    <MenuSection title="Salads" items={pkg.salads} color={pkg.color} />
+                    <MenuSection title="Drinks" items={pkg.drinks} color={pkg.color} />
+                    <MenuSection title="Dessert" items={pkg.dessert} color={pkg.color} />
+                    {pkg.extras && <MenuSection title="Bridal Party Extras" items={pkg.extras} color={pkg.color} />}
+                    {pkg.photoshoot && <MenuSection title="Photo Shoot (30 Pax)" items={pkg.photoshoot} color={pkg.color} />}
                   </div>
                 </div>
               )}
 
               {/* Body - Collapsed preview */}
               {open !== i && (
-                <div className="px-4 md:px-8 py-3 md:py-4 flex gap-2 flex-wrap items-center" style={{ background: "rgba(42,26,10,0.03)" }}>
-                  {["Starters","Mains","Salads","Drinks","Dessert"].map(t => (
-                    <span 
-                      key={t} 
-                      className="font-mono text-[8px] md:text-[9px] tracking-[0.25em] px-2 md:px-3 py-1 rounded-full" 
+                <div className="px-5 md:px-8 py-4 flex gap-2 flex-wrap items-center">
+                  {["Starters", "Mains", "Salads", "Drinks", "Dessert"].map(t => (
+                    <span
+                      key={t}
+                      className="text-[12px] font-medium px-3 py-1 rounded-full"
                       style={{ background: `${pkg.color}18`, color: pkg.color }}
                     >
                       {t}
                     </span>
                   ))}
-                  <span className="font-mono text-[8px] md:text-[9px] tracking-[0.2em] ml-auto" style={{ color: "rgba(42,26,10,0.3)" }}>
-                    Tap to expand ▾
-                  </span>
+                  <button
+                    className="ml-auto text-[12px] font-semibold uppercase tracking-[0.14em] text-ink/50 hover:text-ink cursor-pointer"
+                    onClick={() => setOpen(i)}
+                  >
+                    View menu
+                  </button>
                 </div>
               )}
             </div>
           ))}
         </div>
 
-        <p className="text-center font-mono text-[9px] md:text-[10px] tracking-[0.2em] mt-8 md:mt-10" style={{ color: "rgba(42,26,10,0.4)" }}>
+        <p className="text-center text-[13px] text-ink/50 mt-10">
           *Tea & Mandazi given to clients getting their wedding cake from Tasty Spices & Catering.
         </p>
-      </div>
+      </section>
     </div>
   );
 }
 
-function MenuSection({ title, items }) {
+function MenuSection({ title, items, color }) {
   return (
-    <div className="mb-4 md:mb-0">
-      <div className="font-mono text-[8px] md:text-[9px] tracking-[0.4em] mb-2 md:mb-3 font-bold" style={{ color: DARK }}>
-        {title.toUpperCase()}
+    <div>
+      <div className="eyebrow text-[10px]! mb-3 pb-2 border-b border-ink/10" style={{ color }}>
+        {title}
       </div>
-      {items.map((item, i) => (
-        <div key={i} className="flex items-start gap-2 mb-1.5">
-          <span style={{ color: GOLD, fontSize: 10, marginTop: 4 }}>✦</span>
-          <span className="text-[12px] md:text-[13px] leading-relaxed" style={{ color: "rgba(42,26,10,0.7)" }}>
+      <ul>
+        {items.map((item, i) => (
+          <li key={i} className="flex items-start gap-3 mb-2 text-[15px] leading-snug text-ink/80">
+            <span className="w-1.5 h-1.5 rounded-full bg-gold shrink-0 mt-2" />
             {item}
-          </span>
-        </div>
-      ))}
+          </li>
+        ))}
+      </ul>
     </div>
   );
 }

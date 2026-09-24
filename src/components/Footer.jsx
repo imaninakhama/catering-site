@@ -1,71 +1,49 @@
-import { useState, useEffect, useCallback } from 'react';
-import { CREAM, GOLD, NAV_ITEMS } from '../data/constants';
+import { NAV_ITEMS } from '../data/constants';
 
 function SiteFooter({ goTo }) {
   return (
-    <footer className="px-4 sm:px-8 md:px-12 pt-10 md:pt-14 pb-6 md:pb-8" style={{ background: "#1A0308" }}>
-      {/* Top section - stacked on mobile */}
-      <div className="flex flex-col md:flex-row justify-between items-start gap-8 md:gap-0 mb-8 md:mb-12 pb-8 md:pb-12" style={{ borderBottom: "1px solid rgba(201,168,76,0.1)" }}>
-        
-        {/* Left column - Brand info */}
-        <div className="max-w-full md:max-w-75 text-center md:text-left">
-          <div className="flex items-center justify-center md:justify-start gap-3 mb-4">
-            <span className="text-2xl">🍴</span>
-            <div>
-              <div className="font-bold tracking-widest uppercase text-sm" style={{ color: CREAM }}>TASTY</div>
-              <div className="italic text-xs sm:text-sm" style={{ color: GOLD }}>Spices & Catering Services</div>
-            </div>
-          </div>
-          <p className="text-[12px] sm:text-[13px] leading-relaxed mb-4 md:mb-5 px-4 md:px-0" style={{ color: "rgba(245,237,224,0.35)" }}>
+    <footer className="bg-night text-cream px-4 sm:px-8 md:px-12 pt-14 md:pt-20 pb-8">
+      <div className="grid gap-10 md:grid-cols-[1.4fr_1fr_1fr] pb-10 md:pb-14 mb-6 border-b border-gold/15">
+        {/* Brand */}
+        <div>
+          <div className="font-display text-[40px] md:text-[52px] font-extrabold tracking-[0.1em] leading-none">TASTY</div>
+          <div className="font-display italic text-gold text-lg md:text-xl mt-1">Spices & Catering Services</div>
+          <p className="text-[14px] leading-relaxed text-cream/50 mt-5 max-w-sm">
             Bringing you the difference in catering and hospitality. Corporate · Personal · Custom.
           </p>
-          <div className="italic text-sm md:text-base" style={{ color: "rgba(201,168,76,0.6)" }}>The Difference</div>
+          <div className="font-display italic text-gold/70 text-lg mt-4">The Difference</div>
         </div>
 
-        {/* Right columns - Navigation & Contact - stacked on mobile */}
-        <div className="flex flex-col sm:flex-row gap-8 md:gap-16 w-full md:w-auto text-center sm:text-left">
-          
-          {/* Navigate column */}
-          <div className="flex-1 sm:flex-none">
-            <div className="font-mono text-[9px] tracking-[0.4em] mb-4 md:mb-5" style={{ color: "rgba(201,168,76,0.5)" }}>
-              NAVIGATE
-            </div>
-            <div className="flex flex-col items-center sm:items-start">
-              {NAV_ITEMS.map(({ label, path }) => (
-                <button 
-                  key={path} 
-                  onClick={() => goTo(path)} 
-                  className="font-mono text-[11px] tracking-[0.15em] mb-3 bg-transparent border-0 cursor-pointer hover:opacity-70 transition-opacity text-center sm:text-left" 
-                  style={{ color: "rgba(245,237,224,0.4)" }}
-                >
-                  {label}
-                </button>
-              ))}
-            </div>
+        {/* Navigate */}
+        <div>
+          <div className="eyebrow text-gold/70 mb-5">Navigate</div>
+          <div className="flex flex-col items-start gap-3">
+            {NAV_ITEMS.map(({ label, path }) => (
+              <button
+                key={path}
+                onClick={() => goTo(path)}
+                className="text-[15px] text-cream/60 hover:text-gold bg-transparent border-0 cursor-pointer transition-colors"
+              >
+                {label}
+              </button>
+            ))}
           </div>
+        </div>
 
-          {/* Contact column */}
-          <div className="flex-1 sm:flex-none">
-            <div className="font-mono text-[9px] tracking-[0.4em] mb-4 md:mb-5" style={{ color: "rgba(201,168,76,0.5)" }}>
-              CONTACT
-            </div>
-            <div className="text-[12px] sm:text-[13px] leading-relaxed">
-              <div className="mb-2" style={{ color: "rgba(245,237,224,0.5)" }}>+254 722 116 085</div>
-              <div className="mb-2" style={{ color: "rgba(245,237,224,0.5)" }}>+254 739 968 828</div>
-              <div className="break-all" style={{ color: "rgba(245,237,224,0.5)" }}>tastyspicescatering@gmail.com</div>
-            </div>
+        {/* Contact */}
+        <div>
+          <div className="eyebrow text-gold/70 mb-5">Contact</div>
+          <div className="flex flex-col gap-3 text-[15px] text-cream/60">
+            <a href="tel:+254722116085" className="hover:text-gold transition-colors">+254 722 116 085</a>
+            <a href="tel:+254739968828" className="hover:text-gold transition-colors">+254 739 968 828</a>
+            <a href="mailto:tastyspicescatering@gmail.com" className="break-all hover:text-gold transition-colors">tastyspicescatering@gmail.com</a>
           </div>
         </div>
       </div>
 
-      {/* Bottom section - stacked on mobile */}
-      <div className="flex flex-col sm:flex-row justify-between items-center gap-3 text-center">
-        <span className="font-mono text-[8px] sm:text-[9px] tracking-[0.15em]" style={{ color: "rgba(245,237,224,0.2)" }}>
-          © 2026 Tasty Spices & Catering Services. All Rights Reserved.
-        </span>
-        <span className="font-mono text-[8px] sm:text-[9px] tracking-[0.15em]" style={{ color: "rgba(245,237,224,0.2)" }}>
-          This is a Tasty Delights Profile. All Rights Reserved.
-        </span>
+      <div className="flex flex-col sm:flex-row justify-between gap-2 text-[12px] text-cream/35">
+        <span>© 2026 Tasty Spices & Catering Services. All Rights Reserved.</span>
+        <span>This is a Tasty Delights Profile. All Rights Reserved.</span>
       </div>
     </footer>
   );

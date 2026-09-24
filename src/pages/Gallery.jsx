@@ -1,6 +1,5 @@
-import { DARK, CREAM, GOLD, PARCH } from '../data/constants';
 import { GALLERY_ITEMS } from '../data/constants';
-import { useState } from 'react';
+import PageHero from '../components/PageHero';
 import corporateDirector from "../assets/corporateDirector.jpeg";
 import servingGuests from "../assets/servingGuests.jpeg";
 import weddingBuffet from "../assets/weddingBuffet.jpeg";
@@ -20,64 +19,43 @@ const imageMap = {
 
 function GalleryPage() {
   return (
-    <div className="pt-16 min-h-screen">
-      {/* Hero Section - Responsive */}
-      <div className="px-4 md:px-12 py-10 md:py-20 relative overflow-hidden" style={{ background: DARK }}>
-        <div 
-          className="absolute inset-0 opacity-10" 
-          style={{ 
-            backgroundImage: `radial-gradient(circle, ${GOLD} 1px, transparent 1px)`, 
-            backgroundSize: "36px 36px" 
-          }} 
-        />
-        <div className="relative max-w-175 text-center md:text-left mx-auto md:mx-0">
-          <span className="font-mono text-[10px] tracking-[0.45em] block mb-3" style={{ color: "rgba(201,168,76,0.7)" }}>
-            ✦ PAST EVENTS
-          </span>
-          <h1 className="text-[clamp(36px,6vw,72px)] font-bold uppercase tracking-widest leading-none mb-4" style={{ color: CREAM }}>
-            Gallery
-          </h1>
-          <p className="text-[15px] md:text-[17px] leading-[1.75] max-w-130 mx-auto md:mx-0" style={{ color: "rgba(245,237,224,0.5)" }}>
-            A glimpse of what we do — from intimate setups to grand buffets.
-          </p>
-        </div>
-      </div>
+    <div className="min-h-screen">
+      <PageHero eyebrow="Past Events" title="Gallery">
+        A glimpse of what we do, from intimate setups to grand buffets.
+      </PageHero>
 
-      {/* Gallery Grid - Responsive columns */}
-      <div className="px-4 md:px-12 py-8 md:py-16">
-        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-3 md:gap-4">
+      <section className="px-4 sm:px-8 md:px-12 py-10 md:py-16">
+        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4 md:gap-5">
           {GALLERY_ITEMS.map((item, i) => (
-            <div key={i} className="rounded-xl overflow-hidden hover-card cursor-pointer transition-transform duration-300 hover:scale-[1.02]" style={{ border: "1px solid rgba(122,14,32,0.1)" }}>
-              {/* Image container */}
-              <div className="h-48 md:h-56 overflow-hidden">
-                <img 
-                  src={imageMap[item.label]} 
-                  alt={item.label}
-                  className="w-full h-full object-cover hover:scale-110 transition-transform duration-500"
-                />
-              </div>
-              <div className="p-3 md:p-5" style={{ background: PARCH }}>
-                <p className="text-[11px] md:text-[13px] leading-relaxed text-center" style={{ color: "rgba(42,26,10,0.65)" }}>
-                  {item.label}
-                </p>
-              </div>
-            </div>
+            <figure
+              key={item.label}
+              className={`photo-zoom relative overflow-hidden rounded-2xl bg-wine/10 ${i === 0 ? "sm:col-span-2 lg:row-span-2 aspect-4/3 lg:aspect-auto" : "aspect-4/3"}`}
+            >
+              <img
+                src={imageMap[item.label]}
+                alt={item.label}
+                loading={i < 3 ? "eager" : "lazy"}
+                className="absolute inset-0 w-full h-full object-cover"
+              />
+              <figcaption className="absolute inset-x-0 bottom-0 bg-linear-to-t from-night/85 to-transparent text-cream px-5 pt-12 pb-4 text-[14px] md:text-[15px] leading-snug">
+                {item.label}
+              </figcaption>
+            </figure>
           ))}
         </div>
 
-        {/* CTA Section - Responsive */}
-        <div className="mt-8 md:mt-12 p-6 md:p-8 rounded-xl text-center" style={{ background: DARK }}>
-          <div className="font-mono text-[9px] md:text-[10px] tracking-[0.4em] mb-3" style={{ color: "rgba(201,168,76,0.65)" }}>
-            ✦ WANT TO SEE MORE?
+        <div className="mt-10 md:mt-14 p-8 md:p-12 rounded-2xl bg-wine text-cream flex flex-col md:flex-row md:items-center md:justify-between gap-6">
+          <div>
+            <div className="eyebrow text-gold/80 mb-3">Want to see more?</div>
+            <p className="font-display text-[clamp(24px,3vw,36px)] font-bold leading-tight">
+              Get in touch and we'll share our full event portfolio.
+            </p>
           </div>
-          <p className="text-[13px] md:text-[15px] mb-2" style={{ color: "rgba(245,237,224,0.5)" }}>
-            Get in touch and we'll share our full event portfolio.
-          </p>
-          <div className="font-semibold mt-2 text-sm md:text-base break-all" style={{ color: CREAM }}>
+          <a href="mailto:tastyspicescatering@gmail.com" className="btn-gold shrink-0 normal-case! tracking-normal! break-all">
             tastyspicescatering@gmail.com
-          </div>
+          </a>
         </div>
-      </div>
+      </section>
     </div>
   );
 }

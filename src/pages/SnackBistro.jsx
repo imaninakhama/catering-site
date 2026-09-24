@@ -1,75 +1,57 @@
-import { DARK, CREAM, GOLD } from '../data/constants';
 import { SNACK_ITEMS, SNACK_ALSO } from '../data/constants';
-import { useState } from 'react';
+import PageHero from '../components/PageHero';
+import Breakfast from '../assets/Breakfast.jpeg';
 
 function BistroPage({ goTo }) {
   return (
-    <div className="pt-16 min-h-screen">
-      <div className="px-12 py-20 relative overflow-hidden" style={{ background: DARK }}>
-        <div 
-          className="absolute inset-0 opacity-10" 
-          style={{ 
-            backgroundImage: `radial-gradient(circle, ${GOLD} 1px, transparent 1px)`, 
-            backgroundSize: "36px 36px" 
-          }} 
-        />
-        <div className="relative max-w-175">
-          <span className="font-mono text-[10px] tracking-[0.45em] block mb-3" style={{ color: "rgba(201,168,76,0.7)" }}>
-            ✦ LIGHT BITES & FINGER FOOD
-          </span>
-          <h1 
-            className="text-[clamp(36px,6vw,72px)] font-bold leading-none mb-3" 
-            style={{ color: CREAM, fontFamily: "Georgia, serif", fontWeight: 400, fontStyle: "italic" }}
-          >
-            Snack Bistro
-          </h1>
-          <p className="text-[17px] leading-[1.75] max-w-130" style={{ color: "rgba(245,237,224,0.5)" }}>
-            Perfect for receptions, cocktail hours, and informal gatherings. Unit prices on request.
-          </p>
-        </div>
-      </div>
+    <div className="min-h-screen">
+      <PageHero
+        eyebrow="Light Bites & Finger Food"
+        title="Snack Bistro"
+        image={Breakfast}
+        imageAlt="Trays of samosas and boiled eggs set out for a morning event"
+      >
+        Perfect for receptions, cocktail hours and informal gatherings. Unit prices on request.
+      </PageHero>
 
-      <div className="px-12 py-16">
-        <div className="grid grid-cols-2 gap-0.5 max-w-200">
-          {SNACK_ITEMS.map((item, i) => (
-            <div 
-              key={i} 
-              className="flex items-center gap-4 py-5 px-6 hover-card" 
-              style={{ 
-                background: i % 2 === 0 ? "rgba(122,14,32,0.03)" : "rgba(122,14,32,0.02)", 
-                border: "1px solid rgba(122,14,32,0.07)" 
-              }}
-            >
-              <span className="text-base" style={{ color: GOLD }}>✦</span>
-              <span className="text-[16px]">{item}</span>
+      <section className="px-4 sm:px-8 md:px-12 py-14 md:py-24">
+        <div className="grid gap-12 lg:grid-cols-[1.5fr_1fr] lg:gap-16 items-start">
+          <div>
+            <span className="eyebrow text-wine block mb-3">On the Menu</span>
+            <h2 className="font-display font-extrabold text-[clamp(32px,4.5vw,56px)] leading-[0.95] tracking-tight mb-8">
+              Snacks we serve
+            </h2>
+            <ul className="grid grid-cols-1 sm:grid-cols-2 gap-x-10 border-t border-ink/15">
+              {SNACK_ITEMS.map((item, i) => (
+                <li key={item} className="flex items-baseline gap-4 py-4 border-b border-ink/15">
+                  <span className="font-display text-gold-deep font-bold text-sm w-6 shrink-0">{String(i + 1).padStart(2, "0")}</span>
+                  <span className="font-display text-[20px] md:text-[22px] font-semibold">{item}</span>
+                </li>
+              ))}
+            </ul>
+          </div>
+
+          <aside className="p-6 md:p-10 rounded-2xl bg-wine text-cream lg:sticky lg:top-24">
+            <div className="eyebrow text-gold/80 mb-4">Also Available</div>
+            <div className="flex gap-2 flex-wrap mb-8">
+              {SNACK_ALSO.map(item => (
+                <span key={item} className="px-4 py-2 rounded-full text-[14px] bg-gold/15 text-gold border border-gold/25">
+                  {item}
+                </span>
+              ))}
             </div>
-          ))}
+            <p className="text-[15px] leading-relaxed text-cream/65 mb-6">
+              Contact us for more information, inquiries, custom orders, other varieties and deliveries.
+            </p>
+            <div className="font-display text-xl md:text-2xl font-bold mb-8">
+              <a href="tel:+254722116085" className="hover:text-gold transition-colors">+254 722 116 085</a>
+              <span className="text-cream/40"> / </span>
+              <a href="tel:+254739968828" className="hover:text-gold transition-colors">739 968 828</a>
+            </div>
+            <button className="btn-gold w-full" onClick={() => goTo("/contact")}>Place an Order</button>
+          </aside>
         </div>
-
-        <div 
-          className="mt-10 p-8 rounded-xl max-w-200" 
-          style={{ background: DARK, border: "1px solid rgba(201,168,76,0.2)" }}
-        >
-          <div className="font-mono text-[9px] tracking-[0.4em] mb-4" style={{ color: "rgba(201,168,76,0.65)" }}>
-            ALSO AVAILABLE
-          </div>
-          <div className="flex gap-3 flex-wrap mb-6">
-            {SNACK_ALSO.map(item => (
-              <span 
-                key={item} 
-                className="px-4 py-2 rounded-full font-mono text-[10px] tracking-[0.2em]" 
-                style={{ background: "rgba(201,168,76,0.12)", color: GOLD, border: "1px solid rgba(201,168,76,0.2)" }}
-              >
-                {item}
-              </span>
-            ))}
-          </div>
-          <p className="text-[13px] italic mb-4" style={{ color: "rgba(245,237,224,0.45)" }}>
-            Contact us for more information, inquiries, custom orders & other varieties and deliveries.
-          </p>
-          <div className="font-semibold" style={{ color: CREAM }}>+254 722 116 085 / 739 968 828</div>
-        </div>
-      </div>
+      </section>
     </div>
   );
 }

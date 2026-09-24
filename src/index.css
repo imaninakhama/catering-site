@@ -1,1 +1,52 @@
-@import 'tailwindcss'
+@import 'tailwindcss';
+
+@theme {
+  --font-display: "Playfair Display", Georgia, serif;
+  --font-sans: "DM Sans", system-ui, -apple-system, "Segoe UI", sans-serif;
+
+  --color-wine: #7A0E20;
+  --color-wine-deep: #4A0E1A;
+  --color-night: #1A0308;
+  --color-gold: #C9A84C;
+  --color-gold-deep: #A07828;
+  --color-cream: #F5EDE0;
+  --color-parch: #F0E6C8;
+  --color-ink: #2A1A0A;
+}
+
+@layer base {
+  html { -webkit-text-size-adjust: 100%; }
+  body { background: var(--color-parch); color: var(--color-ink); }
+  h1, h2, h3 { text-wrap: balance; }
+  ::selection { background: var(--color-gold); color: var(--color-ink); }
+}
+
+@utility eyebrow {
+  @apply font-sans text-[11px] font-semibold uppercase tracking-[0.28em];
+}
+@utility btn {
+  @apply inline-flex items-center justify-center gap-2 rounded-full px-7 py-3.5 font-sans text-[13px] font-semibold uppercase tracking-[0.14em] transition duration-200 cursor-pointer;
+}
+@utility btn-gold {
+  @apply btn bg-gold text-ink hover:bg-cream;
+}
+@utility btn-wine {
+  @apply btn bg-wine text-cream hover:bg-wine-deep;
+}
+@utility btn-ghost {
+  @apply btn border border-cream/30 bg-transparent text-cream hover:border-gold hover:text-gold;
+}
+
+@layer components {
+  .photo-zoom img { transition: transform 0.7s ease-out; }
+  .photo-zoom:hover img { transform: scale(1.04); }
+}
+
+@keyframes marquee {
+  from { transform: translateX(0); }
+  to { transform: translateX(-50%); }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  *, *::before, *::after { animation: none !important; transition: none !important; }
+}
